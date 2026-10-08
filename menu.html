@@ -1,0 +1,1995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Steam Hub Cafe | Menu</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --black: #070707;
+    --black2: #11100e;
+    --gold: #d9a441;
+    --gold-light: #f5d27a;
+    --cream: #f7f0df;
+    --muted: #aaa59a;
+    --line: rgba(217,164,65,0.35);
+    --notice-color-1: #f5d27a;
+    --notice-color-2: #ff4d4d;
+}
+body {
+    background: #030303;
+    color: var(--cream);
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+    padding: 30px 0;
+}
+.menu-page {
+
+    position: relative;
+
+    width: 210mm;
+
+    min-height: 297mm;
+
+    margin: 0 auto 40px;
+
+    padding: 25px 35px 90px;
+
+    overflow: hidden;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(217,164,65,0.12),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            145deg,
+            #050505,
+            #15120d,
+            #050505
+        );
+
+    border: 1px solid rgba(217,164,65,0.35);
+
+    box-shadow:
+        0 20px 70px rgba(0,0,0,0.8);
+}
+
+.menu-page::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 12px;
+
+    border:
+        1px solid
+        rgba(217,164,65,0.18);
+
+    pointer-events: none;
+}
+
+
+.menu-header {
+
+    position: relative;
+
+    min-height: 125px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-bottom:
+        1px solid
+        var(--line);
+}
+
+
+.logo {
+
+    width: 120px;
+
+    height: 120px;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+
+.page-number {
+
+    position: absolute;
+
+    right: 0;
+
+    bottom: 16px;
+
+    color: var(--gold);
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+}
+
+.menu-heading {
+
+    text-align: center;
+
+    padding:
+        18px
+        0
+        16px;
+}
+
+
+.menu-heading span {
+
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 8px;
+
+    font-weight: bold;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 3px;
+}
+
+
+.menu-heading h1 {
+
+    color: var(--cream);
+
+    font-family: Georgia, serif;
+
+    font-size: 45px;
+
+    letter-spacing: 6px;
+}
+
+
+.heading-line {
+
+    width: 100px;
+
+    height: 2px;
+
+    margin: 8px auto;
+
+    background:
+
+        linear-gradient(
+            to right,
+            transparent,
+            var(--gold),
+            transparent
+        );
+}
+
+
+
+.menu-section {
+
+    margin-bottom: 17px;
+
+    opacity: 0;
+
+    transform: translateY(15px);
+
+    transition:
+        opacity .6s ease,
+        transform .6s ease;
+}
+
+
+.menu-section.show {
+
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+
+.section-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 5px;
+}
+
+
+.section-icon {
+
+    font-size: 16px;
+}
+
+
+.section-title h2 {
+
+    color: var(--gold-light);
+
+    font-family: Georgia, serif;
+
+    font-size: 20px;
+
+    letter-spacing: 2px;
+
+    white-space: nowrap;
+}
+
+
+.section-title::after {
+
+    content: "";
+
+    height: 1px;
+
+    flex: 1;
+
+    margin-left: 8px;
+
+    background:
+
+        linear-gradient(
+            to right,
+            var(--gold),
+            transparent
+        );
+}
+
+
+
+.menu-list {
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+/* =====================================================
+   MENU ITEM
+===================================================== */
+
+.menu-item {
+
+    display: flex;
+
+    align-items: center;
+
+    min-height: 21px;
+
+    padding: 2px 6px;
+
+    border-radius: 4px;
+
+    font-size: 9.5px;
+
+    transition: .2s ease;
+
+    cursor: pointer;
+}
+
+
+.menu-item span:first-child {
+
+    color: var(--cream);
+
+    white-space: nowrap;
+}
+
+
+/* =====================================================
+   DOTS
+===================================================== */
+
+.dots {
+
+    flex: 1;
+
+    margin: 0 8px;
+
+    border-bottom:
+        1px dotted
+        rgba(247,240,223,.35);
+
+    height: 1px;
+}
+
+
+/* =====================================================
+   PRICE
+===================================================== */
+
+.menu-item strong {
+
+    color: var(--gold-light);
+
+    font-size: 10px;
+
+    min-width: 38px;
+
+    text-align: right;
+}
+
+
+/* =====================================================
+   ITEM HOVER
+===================================================== */
+
+.menu-item:hover,
+.menu-item.selected {
+
+    background:
+        rgba(217,164,65,.12);
+
+    transform:
+        translateX(3px);
+}
+
+
+/* =====================================================
+   PAGE 2 GRID
+===================================================== */
+
+.page-two-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        .85fr 1.15fr;
+
+    gap: 25px;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.menu-footer {
+
+    position: absolute;
+
+    left: 35px;
+
+    right: 35px;
+
+    bottom: 24px;
+
+    padding-top: 10px;
+
+    text-align: center;
+
+    border-top:
+        1px solid
+        var(--line);
+}
+
+
+.menu-footer p {
+
+    color: var(--muted);
+
+    font-size: 7px;
+
+    line-height: 1.5;
+
+    margin-bottom: 5px;
+}
+
+
+.footer-info {
+
+    color: var(--gold-light);
+
+    font-size: 7px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+
+/* =====================================================
+   ORDER NOTICE
+===================================================== */
+
+.order-notice {
+
+    margin-top: 8px;
+
+    text-align: center;
+
+    font-size: 8px;
+
+    font-weight: 900;
+
+    letter-spacing: .6px;
+
+    line-height: 1.4;
+
+    text-transform: uppercase;
+
+    animation:
+        orderBlink
+        1.2s
+        infinite;
+}
+
+
+/* =====================================================
+   BLINKING TWO-COLOR ANIMATION
+===================================================== */
+
+@keyframes orderBlink {
+
+    0% {
+
+        color: var(--notice-color-1);
+
+        opacity: 1;
+    }
+
+    25% {
+
+        color: var(--notice-color-1);
+
+        opacity: 1;
+    }
+
+    50% {
+
+        color: var(--notice-color-2);
+
+        opacity: .45;
+    }
+
+    55% {
+
+        color: var(--notice-color-2);
+
+        opacity: 1;
+    }
+
+    100% {
+
+        color: var(--notice-color-2);
+
+        opacity: 1;
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:900px) {
+
+    body {
+
+        padding: 0;
+    }
+
+
+    .menu-page {
+
+        width: 100%;
+
+        min-height: 100vh;
+
+        margin: 0;
+
+        padding:
+            20px
+            20px
+            110px;
+
+        border: none;
+
+        box-shadow: none;
+    }
+
+
+    .menu-header {
+
+        min-height: 105px;
+    }
+
+
+    .logo {
+
+        width: 82px;
+
+        height: 82px;
+    }
+
+
+    .menu-heading h1 {
+
+        font-size: 40px;
+    }
+
+
+    .page-two-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 5px;
+    }
+
+
+    .menu-item {
+
+        font-size: 11px;
+
+        min-height: 26px;
+    }
+
+
+    .menu-item strong {
+
+        font-size: 11px;
+    }
+
+
+    .section-title h2 {
+
+        font-size: 21px;
+    }
+
+
+    .menu-footer {
+
+        left: 20px;
+
+        right: 20px;
+    }
+
+
+    .order-notice {
+
+        font-size: 9px;
+    }
+
+}
+
+
+/* =====================================================
+   SMALL PHONE
+===================================================== */
+
+@media(max-width:480px) {
+
+    .menu-page {
+
+        padding-left: 15px;
+
+        padding-right: 15px;
+    }
+
+
+    .logo {
+
+        width: 75px;
+
+        height: 75px;
+    }
+
+
+    .menu-heading h1 {
+
+        font-size: 36px;
+    }
+
+
+    .menu-item {
+
+        font-size: 10px;
+    }
+
+
+    .menu-item strong {
+
+        font-size: 10px;
+    }
+
+
+    .section-title h2 {
+
+        font-size: 19px;
+    }
+
+
+    .order-notice {
+
+        font-size: 8px;
+
+        letter-spacing: .3px;
+    }
+
+}
+
+
+/* =====================================================
+   PRINT / A4 PDF
+===================================================== */
+
+@media print {
+
+    @page {
+
+        size: A4;
+
+        margin: 0;
+    }
+
+
+    body {
+
+        padding: 0;
+
+        background: white;
+    }
+
+
+    .menu-page {
+
+        width: 210mm;
+
+        height: 297mm;
+
+        min-height: 297mm;
+
+        margin: 0;
+
+        box-shadow: none;
+
+        border: none;
+
+        page-break-after: always;
+
+        break-after: page;
+
+        -webkit-print-color-adjust: exact;
+
+        print-color-adjust: exact;
+    }
+
+
+    .menu-page:last-child {
+
+        page-break-after: auto;
+
+        break-after: auto;
+    }
+
+
+    .menu-item:hover {
+
+        transform: none;
+    }
+
+
+    /* Keep notice visible in PDF */
+
+    .order-notice {
+
+        animation: none;
+
+        color: var(--notice-color-2);
+
+        font-weight: 900;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     PAGE 1
+===================================================== -->
+
+<section class="menu-page">
+
+
+    <!-- HEADER -->
+
+    <header class="menu-header">
+        <img
+            src="./Steam Hub Momo Café Emblem.png"
+            class="logo"
+            alt="Steam Hub Cafe Logo"
+        >
+
+
+        <div class="page-number">
+
+            01 / 02
+
+        </div>
+
+
+    </header>
+
+
+    <!-- =================================================
+         PAGE 1 HEADING
+    ================================================== -->
+
+    <div class="menu-heading">
+
+        <span>
+          •  STEAM HUB-THE MOMOS CAFE •
+        </span>
+
+
+        <h1>
+            MENU
+        </h1>
+
+
+        <div class="heading-line"></div>
+
+    </div>
+
+
+    <!-- =================================================
+         MOMOS
+    ================================================== -->
+
+    <section class="menu-section">
+
+
+        <div class="section-title">
+
+            <span class="section-icon">
+                🥟
+            </span>
+
+            <h2>
+                MOMOS
+            </h2>
+
+        </div>
+
+
+        <div class="menu-list">
+
+
+            <div class="menu-item">
+
+                <span>
+                    Veg Momos – Steamed
+                </span>
+
+                <span class="dots"></span>
+
+                <strong>
+                    ₹120
+                </strong>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <span>
+                    Chicken Momos – Steamed
+                </span>
+
+                <span class="dots"></span>
+
+                <strong>
+                    ₹150
+                </strong>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <span>
+                    Veg Momos – Fried
+                </span>
+
+                <span class="dots"></span>
+
+                <strong>
+                    ₹140
+                </strong>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <span>
+                    Chicken Momos – Fried
+                </span>
+
+                <span class="dots"></span>
+
+                <strong>
+                    ₹170
+                </strong>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <span>
+                    Cheese Dumped Momos – Veg
+                </span>
+
+                <span class="dots"></span>
+
+                <strong>
+                    ₹190
+                </strong>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <span>
+                    Cheese Dumped Momos – Non-Veg
+                </span>
+
+                <span class="dots"></span>
+
+                <strong>
+                    ₹240
+                </strong>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <span>
+                    Tossed in Sauce – Veg
+                </span>
+
+                <span class="dots"></span>
+
+                <strong>
+                    ₹180
+                </strong>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <span>
+                    Tossed in Sauce – Non-Veg
+                </span>
+
+                <span class="dots"></span>
+
+                <strong>
+                    ₹200
+                </strong>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <span>
+                    Peri Peri Momos – Veg
+                </span>
+
+                <span class="dots"></span>
+
+                <strong>
+                    ₹160
+                </strong>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <span>
+                    Peri Peri Momos – Non-Veg
+                </span>
+
+                <span class="dots"></span>
+
+                <strong>
+                    ₹180
+                </strong>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <span>
+                    Afghani Momos – Veg
+                </span>
+
+                <span class="dots"></span>
+
+                <strong>
+                    ₹190
+                </strong>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <span>
+                    Afghani Momos – Non-Veg
+                </span>
+
+                <span class="dots"></span>
+
+                <strong>
+                    ₹210
+                </strong>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         QUICK BITES
+    ================================================== -->
+
+    <section class="menu-section">
+
+
+        <div class="section-title">
+
+            <span class="section-icon">
+                🍗
+            </span>
+
+            <h2>
+                QUICK BITES
+            </h2>
+
+        </div>
+
+
+        <div class="menu-list">
+
+
+            <div class="menu-item">
+
+                <span>
+                    Chicken Lay's Chat
+                </span>
+
+                <span class="dots"></span>
+
+                <strong>
+                    ₹150
+                </strong>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <span>
+                    Lay's Chat
+                </span>
+
+                <span class="dots"></span>
+
+                <strong>
+                    ₹100
+                </strong>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <span>
+                    Corn Delight
+                </span>
+
+                <span class="dots"></span>
+
+                <strong>
+                    ₹100
+                </strong>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <span>
+                    Broasted Chicken
+                </span>
+
+                <span class="dots"></span>
+
+                <strong>
+                    ₹200
+                </strong>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <span>
+                    Cheese Corn Nachos
+                </span>
+
+                <span class="dots"></span>
+
+                <strong>
+                    ₹140
+                </strong>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <span>
+                    Cheese Nachos
+                </span>
+
+                <span class="dots"></span>
+
+                <strong>
+                    ₹110
+                </strong>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <span>
+                    Chicken Lollipop
+                </span>
+
+                <span class="dots"></span>
+
+                <strong>
+                    ₹200
+                </strong>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <span>
+                    Chicken Popcorn
+                </span>
+
+                <span class="dots"></span>
+
+                <strong>
+                    ₹110
+                </strong>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <span>
+                    Veg Nuggets
+                </span>
+
+                <span class="dots"></span>
+
+                <strong>
+                    ₹120
+                </strong>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <span>
+                    Chicken Nuggets
+                </span>
+
+                <span class="dots"></span>
+
+                <strong>
+                    ₹120
+                </strong>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <span>
+                    Plain Nachos
+                </span>
+
+                <span class="dots"></span>
+
+                <strong>
+                    ₹100
+                </strong>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <span>
+                    Potato Bites
+                </span>
+
+                <span class="dots"></span>
+
+                <strong>
+                    ₹110
+                </strong>
+
+            </div>
+
+
+        </div>
+
+    </section>
+    <section class="menu-section">
+        <div class="section-title">
+            <span class="section-icon">
+                🍟
+            </span>
+
+            <h2>
+                FRENCH FRIES
+            </h2>
+
+        </div>
+
+
+        <div class="menu-list">
+
+
+            <div class="menu-item">
+
+                <span>
+                    Salted French Fries
+                </span>
+
+                <span class="dots"></span>
+
+                <strong>
+                    ₹100
+                </strong>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <span>
+                    Peri Peri French Fries
+                </span>
+
+                <span class="dots"></span>
+
+                <strong>
+                    ₹110
+                </strong>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <span>
+                    Maggie French Fries
+                </span>
+
+                <span class="dots"></span>
+
+                <strong>
+                    ₹100
+                </strong>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <span>
+                    Cheese French Fries
+                </span>
+
+                <span class="dots"></span>
+
+                <strong>
+                    ₹110
+                </strong>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <span>
+                    Chicken Loaded French Fries
+                </span>
+
+                <span class="dots"></span>
+
+                <strong>
+                    ₹190
+                </strong>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+    <footer class="menu-footer">
+
+
+        <p>
+
+            Sahakara Sindoora Complex,
+            beside Bharath Cinema,
+            Joduraste, Karkala,
+            Udupi 576117
+
+        </p>
+
+
+        <div class="footer-info">
+
+            OPEN DAILY 04:00 PM – 10:00 PM
+
+        </div>
+
+
+        <!-- BLINKING NOTICE -->
+
+        <div class="order-notice">
+            •
+
+            ORDER SHOULD BE DONE AT CASH COUNTER
+            •
+            FOOD SHOULD BE COLLECTED BY YOURSELF
+            •
+              PRE-ORDERS ARE ACCEPTED
+            •
+
+        </div>
+
+
+    </footer>
+
+
+</section>
+
+
+
+<section class="menu-page">
+
+
+    <!-- HEADER -->
+
+    <header class="menu-header">
+
+
+        <!-- SAME UPLOADED LOGO -->
+
+        <img
+            src="./Steam Hub Momo Café Emblem.png"
+            class="logo"
+            alt="Steam Hub Cafe Logo"
+        >
+
+
+        <div class="page-number">
+
+            02 / 02
+
+        </div>
+
+
+    </header>
+
+    <div class="menu-heading">
+
+
+        <span>
+            • STEAM HUB-THE MOMOS CAFE •
+        </span>
+
+
+        <h1>
+            MENU
+        </h1>
+
+
+        <div class="heading-line"></div>
+
+
+    </div>
+
+        <div>
+
+
+            <!-- PIZZA -->
+
+            <section class="menu-section">
+
+
+                <div class="section-title">
+
+                    <span class="section-icon">
+                        🍕
+                    </span>
+
+                    <h2>
+                        PIZZA
+                    </h2>
+
+                </div>
+
+
+                <div class="menu-list">
+
+
+                    <div class="menu-item">
+
+                        <span>
+                            Pizza
+                        </span>
+
+                        <span class="dots"></span>
+
+                        <strong>
+                            ₹250
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- BURGER -->
+
+            <section class="menu-section">
+
+
+                <div class="section-title">
+
+                    <span class="section-icon">
+                        🍔
+                    </span>
+
+                    <h2>
+                        BURGER
+                    </h2>
+
+                </div>
+
+
+                <div class="menu-list">
+
+
+                    <div class="menu-item">
+
+                        <span>
+                            Veg Burger
+                        </span>
+
+                        <span class="dots"></span>
+
+                        <strong>
+                            ₹110
+                        </strong>
+
+                    </div>
+
+
+                    <div class="menu-item">
+
+                        <span>
+                            Chicken Burger
+                        </span>
+
+                        <span class="dots"></span>
+
+                        <strong>
+                            ₹130
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+
+        <!-- =================================================
+             RIGHT COLUMN
+        ================================================== -->
+
+        <div>
+
+
+            <!-- MILKSHAKES -->
+
+            <section class="menu-section">
+
+
+                <div class="section-title">
+
+                    <span class="section-icon">
+                        🥤
+                    </span>
+
+                    <h2>
+                        MILKSHAKES
+                    </h2>
+
+                </div>
+
+
+                <div class="menu-list">
+
+
+                    <div class="menu-item">
+
+                        <span>
+                            Black Current
+                        </span>
+
+                        <span class="dots"></span>
+
+                        <strong>
+                            ₹90
+                        </strong>
+
+                    </div>
+
+
+                    <div class="menu-item">
+
+                        <span>
+                            Butterscotch
+                        </span>
+
+                        <span class="dots"></span>
+
+                        <strong>
+                            ₹90
+                        </strong>
+
+                    </div>
+
+
+                    <div class="menu-item">
+
+                        <span>
+                            Chikkoo
+                        </span>
+
+                        <span class="dots"></span>
+
+                        <strong>
+                            ₹90
+                        </strong>
+
+                    </div>
+
+
+                    <div class="menu-item">
+
+                        <span>
+                            Chocolate
+                        </span>
+
+                        <span class="dots"></span>
+
+                        <strong>
+                            ₹90
+                        </strong>
+
+                    </div>
+
+
+                    <div class="menu-item">
+
+                        <span>
+                            Mango
+                        </span>
+
+                        <span class="dots"></span>
+
+                        <strong>
+                            ₹90
+                        </strong>
+
+                    </div>
+
+
+                    <div class="menu-item">
+
+                        <span>
+                            Oreo
+                        </span>
+
+                        <span class="dots"></span>
+
+                        <strong>
+                            ₹90
+                        </strong>
+
+                    </div>
+
+
+                    <div class="menu-item">
+
+                        <span>
+                            Pista
+                        </span>
+
+                        <span class="dots"></span>
+
+                        <strong>
+                            ₹90
+                        </strong>
+
+                    </div>
+
+
+                    <div class="menu-item">
+
+                        <span>
+                            Vanilla
+                        </span>
+
+                        <span class="dots"></span>
+
+                        <strong>
+                            ₹90
+                        </strong>
+
+                    </div>
+
+
+                    <div class="menu-item">
+
+                        <span>
+                            Tender Coconut
+                        </span>
+
+                        <span class="dots"></span>
+
+                        <strong>
+                            ₹90
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 MOJITOS
+            ================================================== -->
+
+            <section class="menu-section">
+
+
+                <div class="section-title">
+
+                    <span class="section-icon">
+                        🍹
+                    </span>
+
+                    <h2>
+                        MOJITOS & COOLERS
+                    </h2>
+
+                </div>
+
+
+                <div class="menu-list">
+
+
+                    <div class="menu-item">
+
+                        <span>
+                            Blue Mint
+                        </span>
+
+                        <span class="dots"></span>
+
+                        <strong>
+                            ₹100
+                        </strong>
+
+                    </div>
+
+
+                    <div class="menu-item">
+
+                        <span>
+                            Blueberry
+                        </span>
+
+                        <span class="dots"></span>
+
+                        <strong>
+                            ₹100
+                        </strong>
+
+                    </div>
+
+
+                    <div class="menu-item">
+
+                        <span>
+                            Lime Soda
+                        </span>
+
+                        <span class="dots"></span>
+
+                        <strong>
+                            ₹60
+                        </strong>
+
+                    </div>
+
+
+                    <div class="menu-item">
+
+                        <span>
+                            Mango
+                        </span>
+
+                        <span class="dots"></span>
+
+                        <strong>
+                            ₹100
+                        </strong>
+
+                    </div>
+
+
+                    <div class="menu-item">
+
+                        <span>
+                            Mint Lime
+                        </span>
+
+                        <span class="dots"></span>
+
+                        <strong>
+                            ₹100
+                        </strong>
+
+                    </div>
+
+
+                    <div class="menu-item">
+
+                        <span>
+                            Raspberry
+                        </span>
+
+                        <span class="dots"></span>
+
+                        <strong>
+                            ₹100
+                        </strong>
+
+                    </div>
+
+
+                    <div class="menu-item">
+
+                        <span>
+                            Strawberry
+                        </span>
+
+                        <span class="dots"></span>
+
+                        <strong>
+                            ₹100
+                        </strong>
+
+                    </div>
+
+
+                    <div class="menu-item">
+
+                        <span>
+                            Watermelon
+                        </span>
+
+                        <span class="dots"></span>
+
+                        <strong>
+                            ₹100
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =================================================
+         PAGE 2 FOOTER
+    ================================================== -->
+
+    <footer class="menu-footer">
+
+
+        <p>
+
+            Sahakara Sindoora Complex,
+            beside Bharath Cinema,
+            Joduraste, Karkala,
+            Udupi 576117
+
+        </p>
+
+
+        <div class="footer-info">
+
+            OPEN DAILY 04:00 PM – 10:00 PM
+
+            &nbsp; • &nbsp;
+
+            STEAM HUB – THE MOMOS CAFE
+
+        </div>
+
+
+        <!-- BLINKING NOTICE -->
+
+        <div class="order-notice">
+     •
+
+            ORDER SHOULD BE DONE AT CASH COUNTER
+            •
+            FOOD SHOULD BE COLLECTED BY YOURSELF
+            •
+              PRE-ORDERS ARE ACCEPTED
+            •
+        </div>
+
+
+    </footer>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        /* ==========================================
+           SECTION ANIMATION
+        ========================================== */
+
+        const sections =
+            document.querySelectorAll(
+                ".menu-section"
+            );
+
+
+        const observer =
+            new IntersectionObserver(
+
+                function(entries) {
+
+
+                    entries.forEach(
+                        function(entry) {
+
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+
+                                entry.target.classList.add(
+                                    "show"
+                                );
+
+
+                                observer.unobserve(
+                                    entry.target
+                                );
+
+
+                            }
+
+                        }
+                    );
+
+
+                },
+
+
+                {
+                    threshold: 0.05
+                }
+
+            );
+
+
+        sections.forEach(
+            function(section) {
+
+                observer.observe(section);
+
+            }
+        );
+
+
+
+        /* ==========================================
+           MENU ITEM CLICK
+        ========================================== */
+
+        const items =
+            document.querySelectorAll(
+                ".menu-item"
+            );
+
+
+        items.forEach(
+            function(item) {
+
+
+                item.addEventListener(
+                    "click",
+                    function() {
+
+
+                        items.forEach(
+                            function(other) {
+
+                                other.classList.remove(
+                                    "selected"
+                                );
+
+                            }
+                        );
+
+
+                        item.classList.add(
+                            "selected"
+                        );
+
+
+                    }
+                );
+
+
+            }
+        );
+
+
+
+        /* ==========================================
+           LOGO CHECK
+        ========================================== */
+
+        const logos =
+            document.querySelectorAll(
+                ".logo"
+            );
+
+
+        logos.forEach(
+            function(logo) {
+
+
+                logo.addEventListener(
+                    "error",
+                    function() {
+
+
+                        console.log(
+                            "Logo not found. Make sure 1000390805.webp is in the same folder as this HTML file."
+                        );
+
+
+                    }
+                );
+
+
+            }
+        );
+
+
+    }
+
+);
+
+</script>
+
+
+</body>
+
+</html>
